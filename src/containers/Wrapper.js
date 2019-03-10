@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import moment from 'moment';
 import Complete from '../components/Complete';
@@ -8,6 +9,7 @@ import Duck from '../components/Duck';
 import Home from '../components/Home';
 import Food from '../components/Food';
 import Time from '../components/Time';
+import { sendError, clearError } from '../actions/commonActions';
 
 class Wrapper extends Component {
     constructor(props) {
@@ -47,9 +49,10 @@ class Wrapper extends Component {
     pushToPlace = () => {
         const { fedTime } = this.state;
         if (fedTime !== '') {
+            this.props.clearError();
             this.props.history.push('/place');
         } else {
-            // handle error
+            this.sendEmptyFieldError();
         }
     }
 
@@ -60,9 +63,10 @@ class Wrapper extends Component {
     pushToDuck = () => {
         const { place } = this.state;
         if (place !== "") {
+            this.props.clearError();
             this.props.history.push('/duck');
         } else {
-            // handle error
+            this.sendEmptyFieldError();
         }
     }
 
@@ -73,9 +77,10 @@ class Wrapper extends Component {
     pushToFood = () => {
         const { numberOfDucks } = this.state;
         if (numberOfDucks !== '' && numberOfDucks > 0) {
+            this.props.clearError();
             this.props.history.push('/food');
         } else {
-            // handle error
+            this.sendEmptyFieldError();
         }
     }
 
@@ -86,10 +91,19 @@ class Wrapper extends Component {
     pushToReview = () => {
         const { food, foodType, foodAmount } = this.state;
         if (food !== '' && foodType !== '' && foodAmount !== '') {
+            this.props.clearError();
             this.props.history.push('/review');
         } else {
-            // handle error
+            this.sendEmptyFieldError();
         }
+    }
+
+    /**
+     * dispatch an action to send an error
+     * of an empty field
+     */
+    sendEmptyFieldError = () => {
+        this.props.sendError(true, "Please fill the field");
     }
 
     /**
@@ -194,4 +208,13 @@ class Wrapper extends Component {
     }
 }
 
-export default withRouter(Wrapper);
+const mapStateToProps = (state) => ({
+    error: state.common.error
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    sendError: (status, message) => dispatch(sendError(status, message)),
+    clearError: () => dispatch(clearError())
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Wrapper));
