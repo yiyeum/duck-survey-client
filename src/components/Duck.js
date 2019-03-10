@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Stepper from './Stepper';
 
-const Duck = ({ history, handleForm, numberOfDucks }) => {
+const Duck = ({ history, handleForm, numberOfDucks, pushToNext }) => {
   return (
     <div className="survey-wrapper">
       <Stepper step={3} />
@@ -21,7 +21,7 @@ const Duck = ({ history, handleForm, numberOfDucks }) => {
       <br />
       <p className="error-message">Error</p>
       <button type="button" className="survey-prev-button" onClick={() => history.push('/place')}>Prev</button>
-      <button type="button" className="survey-next-button">Next</button>
+      <button type="button" className="survey-next-button" onClick={() => pushToNext('duck')}>Next</button>
     </div>
   );
 }

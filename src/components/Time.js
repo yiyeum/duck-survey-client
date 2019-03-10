@@ -2,7 +2,7 @@ import React from 'react';
 import { TimePicker } from "material-ui-pickers";
 import Stepper from './Stepper';
 
-const Time = ({ history, fedTime, handleDateChange }) => {
+const Time = ({ history, fedTime, handleDateChange, pushToNext }) => {
   return (
     <div className="survey-wrapper">
       <Stepper step={1} />
@@ -12,7 +12,7 @@ const Time = ({ history, fedTime, handleDateChange }) => {
       </div>
       <p className="error-message">error message</p>
       <button type="button" className="survey-prev-button" onClick={() => history.push('/')}>Prev</button>
-      <button type="button" className="survey-next-button">Next</button>
+      <button type="button" className="survey-next-button" onClick={() => pushToNext('time')}>Next</button>
     </div>
   );
 }

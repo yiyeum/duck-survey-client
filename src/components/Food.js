@@ -22,7 +22,7 @@ const foodtypes = [
   },
 ];
 
-const Food = ({ history, handleForm, food, foodType, foodAmount }) => {
+const Food = ({ history, handleForm, food, foodType, foodAmount, pushToNext }) => {
   return (
     <div className="survey-wrapper">
       <Stepper step={4} />
@@ -60,7 +60,7 @@ const Food = ({ history, handleForm, food, foodType, foodAmount }) => {
       <br />
       <p className="error-message">Error</p>
       <button type="button" className="survey-prev-button" onClick={() => history.push('/duck')}>Prev</button>
-      <button type="button" className="survey-next-button">Next</button>
+      <button type="button" className="survey-next-button" onClick={() => pushToNext('food')}>Next</button>
     </div>
   );
 }
