@@ -22,17 +22,97 @@ class Wrapper extends Component {
         }
     }
 
+    /**
+     * update state with the value from the input
+     */
+    handleForm = e => {
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({ [name]: value });
+    };
+
+    /**
+     * update the fedTime value from time select
+     * (this time select component from material-ui
+     * gets time value directly)
+     */
+    handleDateChange = time => {
+        this.setState({ fedTime: time });
+    };
+
     render() {
         return (
             <div>
                 <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/time" render={routerProps => <Time {...routerProps} {...this.state} />} />
-                    <Route exact path="/place" render={routerProps => <Place {...routerProps} {...this.state} />} />
-                    <Route exact path="/duck" render={routerProps => <Duck {...routerProps} {...this.state} />} />
-                    <Route exact path="/food" render={routerProps => <Food {...routerProps} {...this.state} />} />
-                    <Route exact path="/review" render={routerProps => <Review {...routerProps} {...this.state} />} />
-                    <Route exact path="/complete" render={routerProps => <Complete {...routerProps} {...this.state} />} />
+                    <Route
+                        exact
+                        path="/"
+                        component={Home}
+                    />
+                    <Route
+                        exact
+                        path="/time"
+                        render={
+                            routerProps =>
+                                <Time
+                                    {...routerProps}
+                                    {...this.state}
+                                    handleDateChange={this.handleDateChange}
+                                />}
+                    />
+                    <Route
+                        exact
+                        path="/place"
+                        render={
+                            routerProps =>
+                                <Place
+                                    {...routerProps}
+                                    {...this.state}
+                                    handleForm={this.handleForm}
+                                />}
+                    />
+                    <Route
+                        exact
+                        path="/duck"
+                        render={
+                            routerProps =>
+                                <Duck
+                                    {...routerProps}
+                                    {...this.state}
+                                    handleForm={this.handleForm}
+                                />}
+                    />
+                    <Route
+                        exact
+                        path="/food"
+                        render={
+                            routerProps =>
+                                <Food
+                                    {...routerProps}
+                                    {...this.state}
+                                    handleForm={this.handleForm}
+                                />}
+                    />
+                    <Route
+                        exact
+                        path="/review"
+                        render={
+                            routerProps =>
+                                <Review
+                                    {...routerProps}
+                                    {...this.state}
+                                />}
+                    />
+                    <Route
+                        exact
+                        path="/complete"
+                        render={
+                            routerProps =>
+                                <Complete
+                                    {...routerProps}
+                                    {...this.state}
+                                />}
+                    />
                 </Switch>
             </div>
         );

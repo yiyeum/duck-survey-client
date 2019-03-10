@@ -22,7 +22,7 @@ const foodtypes = [
   },
 ];
 
-const Food = () => {
+const Food = ({ history, handleForm, food, foodType, foodAmount }) => {
   return (
     <div className="survey-wrapper">
       <Stepper step={4} />
@@ -31,6 +31,8 @@ const Food = () => {
         select
         className="food-input"
         label="Type of food"
+        value={foodType}
+        onChange={handleForm}
         name="foodType"
         helperText="Please select the type of food"
       >
@@ -44,16 +46,20 @@ const Food = () => {
         label="Food"
         className="food-input"
         name="food"
+        value={food}
+        onChange={handleForm}
         placeholder="ex) Lays chips"
       />
       <TextField
         label="Amount"
         name="foodAmount"
+        value={foodAmount}
+        onChange={handleForm}
         placeholder="ex) Half bag (50g)"
       />
       <br />
       <p className="error-message">Error</p>
-      <button type="button" className="survey-prev-button">Prev</button>
+      <button type="button" className="survey-prev-button" onClick={() => history.push('/duck')}>Prev</button>
       <button type="button" className="survey-next-button">Next</button>
     </div>
   );
