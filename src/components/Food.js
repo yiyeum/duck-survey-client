@@ -22,7 +22,7 @@ const foodtypes = [
   },
 ];
 
-const Food = ({ history, handleForm, food, foodType, foodAmount, pushToNext }) => {
+const Food = ({ history, handleForm, food, foodType, foodAmount, pushToNext, error }) => {
   return (
     <div className="survey-wrapper">
       <Stepper step={4} />
@@ -58,7 +58,7 @@ const Food = ({ history, handleForm, food, foodType, foodAmount, pushToNext }) =
         placeholder="ex) Half bag (50g)"
       />
       <br />
-      <p className="error-message">Error</p>
+      <p className="error-message">{error}</p>
       <button type="button" className="survey-prev-button" onClick={() => history.push('/duck')}>Prev</button>
       <button type="button" className="survey-next-button" onClick={() => pushToNext('food')}>Next</button>
     </div>
