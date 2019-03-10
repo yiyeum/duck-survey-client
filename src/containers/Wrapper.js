@@ -20,7 +20,8 @@ class Wrapper extends Component {
             food: '',
             foodType: '',
             foodAmount: '',
-            fedTime: moment().format()
+            fedTime: moment().format(),
+            repeat: false
         }
     }
 
@@ -41,6 +42,14 @@ class Wrapper extends Component {
     handleDateChange = time => {
         this.setState({ fedTime: time });
     };
+
+    /**
+     * update repeat checkbox on Time component
+     */
+    handleRepeatChange = e => {
+        const checked = e.target.checked;
+        this.setState({ repeat: checked });
+    }
 
     /**
      * check if the value is not empty
@@ -126,6 +135,7 @@ class Wrapper extends Component {
     }
 
     render() {
+        const errorMessage = this.props.error.status && this.props.error.message;
         return (
             <div>
                 <Switch>
@@ -142,8 +152,10 @@ class Wrapper extends Component {
                                 <Time
                                     {...routerProps}
                                     {...this.state}
+                                    handleRepeatChange={this.handleRepeatChange}
                                     handleDateChange={this.handleDateChange}
                                     pushToNext={this.pushToNext} 
+                                    error={errorMessage} 
                                 />}
                     />
                     <Route
@@ -156,6 +168,7 @@ class Wrapper extends Component {
                                     {...this.state}
                                     handleForm={this.handleForm}
                                     pushToNext={this.pushToNext} 
+                                    error={errorMessage} 
                                 />}
                     />
                     <Route
@@ -168,6 +181,7 @@ class Wrapper extends Component {
                                     {...this.state}
                                     handleForm={this.handleForm}
                                     pushToNext={this.pushToNext} 
+                                    error={errorMessage} 
                                 />}
                     />
                     <Route
@@ -180,6 +194,7 @@ class Wrapper extends Component {
                                     {...this.state}
                                     handleForm={this.handleForm}
                                     pushToNext={this.pushToNext} 
+                                    error={errorMessage} 
                                 />}
                     />
                     <Route
