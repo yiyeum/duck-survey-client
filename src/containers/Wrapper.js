@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import Complete from '../components/Complete';
 import Review from '../components/Review';
@@ -10,6 +10,7 @@ import Home from '../components/Home';
 import Food from '../components/Food';
 import Time from '../components/Time';
 import { sendError, clearError } from '../actions/commonActions';
+import { submitForm } from '../actions/formActions';
 
 class Wrapper extends Component {
     constructor(props) {
@@ -134,6 +135,17 @@ class Wrapper extends Component {
         }
     }
 
+    /**
+     * submit form with the data in state
+     */
+    submitForm = () => {
+        const { fedTime, place, numberOfDucks, foodType, food, foodAmount, repeat } = this.state;
+        const model = { fedTime, place, numberOfDucks, foodType, food, foodAmount, repeat };
+        this.props.submitForm(model);
+        this.props.history.push('/complete');
+
+    }
+
     render() {
         const errorMessage = this.props.error.status && this.props.error.message;
         return (
@@ -228,6 +240,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    submitForm: (model) => dispatch(submitForm(model)),
     sendError: (status, message) => dispatch(sendError(status, message)),
     clearError: () => dispatch(clearError())
 });
