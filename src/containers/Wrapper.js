@@ -143,7 +143,6 @@ class Wrapper extends Component {
         const model = { fedTime, place, numberOfDucks, foodType, food, foodAmount, repeat };
         this.props.submitForm(model);
         this.props.history.push('/complete');
-
     }
 
     render() {
@@ -217,6 +216,7 @@ class Wrapper extends Component {
                                 <Review
                                     {...routerProps}
                                     {...this.state}
+                                    submitForm={this.submitForm}
                                 />}
                     />
                     <Route
