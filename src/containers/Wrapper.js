@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import moment from 'moment';
 import Complete from '../components/Complete';
 import Review from '../components/Review';
-import Result from '../containers/Result';
 import Place from '../components/Place';
 import Duck from '../components/Duck';
 import Home from '../components/Home';
@@ -12,23 +12,31 @@ import Time from '../components/Time';
 class Wrapper extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            place: '',
+            numberOfDucks: 0,
+            food: '',
+            foodType: '',
+            foodAmount: '',
+            fedTime: moment().format()
+        }
     }
+
     render() {
         return (
             <div>
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route exact path="/time" component={Time} />
-                    <Route exact path="/place" component={Place} />
-                    <Route exact path="/duck" component={Duck} />
-                    <Route exact path="/food" component={Food} />
-                    <Route exact path="/review" component={Review} />
-                    <Route exact path="/complete" component={Complete} />
-                    <Route exact path="/result" component={Result} />
+                    <Route exact path="/time" render={routerProps => <Time {...routerProps} {...this.state} />} />
+                    <Route exact path="/place" render={routerProps => <Place {...routerProps} {...this.state} />} />
+                    <Route exact path="/duck" render={routerProps => <Duck {...routerProps} {...this.state} />} />
+                    <Route exact path="/food" render={routerProps => <Food {...routerProps} {...this.state} />} />
+                    <Route exact path="/review" render={routerProps => <Review {...routerProps} {...this.state} />} />
+                    <Route exact path="/complete" render={routerProps => <Complete {...routerProps} {...this.state} />} />
                 </Switch>
             </div>
         );
     }
 }
 
-export default Wrapper;
+export default withRouter(Wrapper);
