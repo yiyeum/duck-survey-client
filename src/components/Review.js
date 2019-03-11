@@ -1,8 +1,12 @@
 import React from 'react';
 
 
-const Review = ({ history, place, numberOfDucks, food, foodType, foodAmount, fedTime, repeat, submitForm }) => {
+const Review = ({ history, place, numberOfDucks, food, foodType, foodAmount, fedTime, repeat, submitForm, error, step, resetStep }) => {
   const time = fedTime.split('T')[1].split('-')[0];
+  if(step < 5) {
+    resetStep();
+    history.push('/');
+  }
   return (
     <div className="survey-wrapper">
       <p className="subtitle">Review</p>
@@ -39,6 +43,7 @@ const Review = ({ history, place, numberOfDucks, food, foodType, foodAmount, fed
             </tr>
           </tbody>
         </table>
+        <p className="error-message" style={{ textAlign: 'center' }}>{error}</p>
       </div>
       <button type="button" className="survey-prev-button" onClick={() => history.push('/food')}>Prev</button>
       <button type="button" className="survey-next-button" onClick={submitForm}>Submit</button>

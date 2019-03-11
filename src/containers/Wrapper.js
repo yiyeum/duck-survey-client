@@ -113,7 +113,7 @@ class Wrapper extends Component {
         const { food, foodType, foodAmount } = this.state;
         if (food !== '' && foodType !== '' && foodAmount !== '') {
             this.props.clearError();
-            this.props.history.push('/review');
+            this.setState({ step: 5 }, this.props.history.push('/review'));
         } else {
             this.sendEmptyFieldError();
         }
@@ -231,7 +231,9 @@ class Wrapper extends Component {
                                 <Review
                                     {...routerProps}
                                     {...this.state}
+                                    error={errorMessage}
                                     submitForm={this.submitForm}
+                                    resetStep={this.resetStep}
                                 />}
                     />
                     <Route

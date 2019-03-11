@@ -47,7 +47,7 @@ class Result extends Component {
                     <TableBody>
                         {this.props.forms.map(form => (
                             <TableRow key={form._id}>
-                                <TableCell align="center" colSpan="3">{form.createdAt}</TableCell>
+                                <TableCell align="center" colSpan="3">{form.createdAt.split('.')[0]}</TableCell>
                                 <TableCell align="center" colSpan="3">{form.fedTime}</TableCell>
                                 <TableCell align="center" colSpan="3">{form.place}</TableCell>
                                 <TableCell align="center" colSpan="3">{form.numberOfDucks}</TableCell>
