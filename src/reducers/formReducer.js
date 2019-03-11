@@ -1,18 +1,12 @@
 import * as types from '../actions/actionTypes';
 import { initialState } from './initialState';
 
-function formReducer(state = initialState.form, action) {
+function formReducer(state = initialState.data, action) {
     switch (action.type) {
-        case types.SAVE_FORM: {
+        case types.GOT_FORMS: {
             return {
                 ...state,
-                form: action.model
-            }
-        }
-        case types.CLEAR_FORM: {
-            return {
-                ...state,
-                form: {}
+                forms: action.data
             }
         }
         default:

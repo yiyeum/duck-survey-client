@@ -7,15 +7,15 @@ export function submitForm(model) {
     }
 }
 
-export function saveForm(model) {
+export function getForms() {
     return {
-        type: types.SAVE_FORM,
-        model
+        type: types.GET_FORMS
     }
 }
 
-export function clearForm() {
+export function gotForms(data) {
     return {
-        type: types.CLEAR_FORM
+        type: types.GOT_FORMS,
+        data
     }
 }

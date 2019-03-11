@@ -1,5 +1,7 @@
 export const initialState = {
-    form: {},
+    data: {
+        forms: []
+    },
     common: {
         error: {
             status: false,
