@@ -1,5 +1,11 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
+/**
+ * Stepper to be displayed on the top of each
+ * question page
+ * @param {*} step step state 
+ */
 const Stepper = ({ step }) => {
   return (
     <div className="stepper-wrapper">
@@ -10,5 +16,9 @@ const Stepper = ({ step }) => {
     </div>
   );
 }
+
+Stepper.propTypes = {
+  step: PropTypes.number
+};
 
 export default Stepper;

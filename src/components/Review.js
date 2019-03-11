@@ -1,9 +1,9 @@
 import React from 'react';
-
+import PropTypes from "prop-types";
 
 const Review = ({ history, place, numberOfDucks, food, foodType, foodAmount, fedTime, repeat, submitForm, error, step, resetStep }) => {
   const time = fedTime.split('T')[1].split('-')[0];
-  if(step < 5) {
+  if (step < 5) {
     resetStep();
     history.push('/');
   }
@@ -45,10 +45,33 @@ const Review = ({ history, place, numberOfDucks, food, foodType, foodAmount, fed
         </table>
         <p className="error-message" style={{ textAlign: 'center' }}>{error}</p>
       </div>
-      <button type="button" className="survey-prev-button" onClick={() => history.push('/food')}>Prev</button>
-      <button type="button" className="survey-next-button" onClick={submitForm}>Submit</button>
+      <button
+        type="button"
+        className="survey-prev-button"
+        onClick={() => history.push('/food')}
+      >Prev</button>
+      <button
+        type="button"
+        className="survey-next-button"
+        onClick={submitForm}
+      >Submit</button>
     </div>
   );
 }
+
+Review.propTypes = {
+  history: PropTypes.object,
+  place: PropTypes.string,
+  food: PropTypes.string,
+  foodType: PropTypes.string,
+  foodAmount: PropTypes.string,
+  pushToNext: PropTypes.func,
+  fedTime: PropTypes.string,
+  repeat: PropTypes.bool,
+  submitForm: PropTypes.func,
+  step: PropTypes.number,
+  resetStep: PropTypes.func
+};
+
 
 export default Review;

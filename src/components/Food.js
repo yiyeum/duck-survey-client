@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Stepper from './Stepper';
@@ -23,7 +24,7 @@ const foodtypes = [
 ];
 
 const Food = ({ history, handleForm, food, foodType, foodAmount, pushToNext, error, step, resetStep }) => {
-  if(step < 4) {
+  if (step < 4) {
     resetStep();
     history.push('/');
   }
@@ -63,10 +64,29 @@ const Food = ({ history, handleForm, food, foodType, foodAmount, pushToNext, err
       />
       <br />
       <p className="error-message">{error}</p>
-      <button type="button" className="survey-prev-button" onClick={() => history.push('/duck')}>Prev</button>
-      <button type="button" className="survey-next-button" onClick={() => pushToNext('food')}>Next</button>
+      <button
+        type="button"
+        className="survey-prev-button"
+        onClick={() => history.push('/duck')}
+      >Prev</button>
+      <button
+        type="button"
+        className="survey-next-button"
+        onClick={() => pushToNext('food')}
+      >Next</button>
     </div>
   );
 }
+
+Food.propTypes = {
+  history: PropTypes.object,
+  handleForm: PropTypes.func,
+  food: PropTypes.string,
+  foodType: PropTypes.string,
+  foodAmount: PropTypes.string,
+  pushToNext: PropTypes.func,
+  step: PropTypes.number,
+  resetStep: PropTypes.func
+};
 
 export default Food;

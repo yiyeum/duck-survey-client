@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import moment from 'moment';
 import Complete from '../components/Complete';
 import Review from '../components/Review';
 import Place from '../components/Place';

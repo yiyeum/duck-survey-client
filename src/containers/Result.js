@@ -29,13 +29,22 @@ class Result extends Component {
     render() {
         return (
             <div className="survey-wrapper">
-                <button type="button" className="restart-survey-btn" onClick={this.restartSurvey}>Restart Survey</button>
+                <button
+                    type="button"
+                    className="restart-survey-btn"
+                    onClick={this.restartSurvey}
+                >Restart Survey</button>
                 <p className="subtitle">Result</p>
                 <Table>
                     <TableHead className="result-th">
                         <TableRow>
                             {
-                                tableHead.map((th => <TableCell key={th.id} colSpan="3" rowSpan={th.id === 5 ? "" : 2}>{th.title}</TableCell>))
+                                tableHead.map((th => <TableCell
+                                    key={th.id}
+                                    colSpan="3"
+                                    rowSpan={th.id === 5 ? "" : 2}
+                                >{th.title}
+                                </TableCell>))
                             }
                         </TableRow>
                         <TableRow>
@@ -47,14 +56,50 @@ class Result extends Component {
                     <TableBody>
                         {this.props.forms.map(form => (
                             <TableRow key={form._id}>
-                                <TableCell align="center" colSpan="3">{form.createdAt.split('.')[0]}</TableCell>
-                                <TableCell align="center" colSpan="3">{form.fedTime}</TableCell>
-                                <TableCell align="center" colSpan="3">{form.place}</TableCell>
-                                <TableCell align="center" colSpan="3">{form.numberOfDucks}</TableCell>
-                                <TableCell align="center">{form.foodType}</TableCell>
-                                <TableCell align="center">{form.food}</TableCell>
-                                <TableCell align="center">{form.foodAmount}</TableCell>
-                                <TableCell align="center">{form.repeat && <span className="repeat-mark">Repeated</span>}</TableCell>
+                                <TableCell
+                                    align="center"
+                                    colSpan="3"
+                                >
+                                    {form.createdAt.split('.')[0]}
+                                </TableCell>
+                                <TableCell
+                                    align="center"
+                                    colSpan="3"
+                                >
+                                    {form.fedTime}
+                                </TableCell>
+                                <TableCell
+                                    align="center"
+                                    colSpan="3"
+                                >
+                                    {form.place}
+                                </TableCell>
+                                <TableCell
+                                    align="center"
+                                    colSpan="3"
+                                >
+                                    {form.numberOfDucks}
+                                </TableCell>
+                                <TableCell
+                                    align="center"
+                                >
+                                    {form.foodType}
+                                </TableCell>
+                                <TableCell
+                                    align="center"
+                                >
+                                    {form.food}
+                                </TableCell>
+                                <TableCell
+                                    align="center"
+                                >
+                                    {form.foodAmount}
+                                </TableCell>
+                                <TableCell
+                                    align="center"
+                                >
+                                    {form.repeat && <span className="repeat-mark">Repeated</span>}
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
