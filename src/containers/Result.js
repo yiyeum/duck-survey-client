@@ -24,6 +24,7 @@ class Result extends Component {
 
     restartSurvey = () => {
         this.props.history.push('/');
+        window.location.reload();
     }
 
     render() {
