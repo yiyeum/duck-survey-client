@@ -9,6 +9,7 @@ import Duck from '../components/Duck';
 import Home from '../components/Home';
 import Food from '../components/Food';
 import Time from '../components/Time';
+import Result from '../containers/Result';
 import { sendError, clearError } from '../actions/commonActions';
 import { submitForm } from '../actions/formActions';
 
@@ -165,8 +166,8 @@ class Wrapper extends Component {
                                     {...this.state}
                                     handleRepeatChange={this.handleRepeatChange}
                                     handleDateChange={this.handleDateChange}
-                                    pushToNext={this.pushToNext} 
-                                    error={errorMessage} 
+                                    pushToNext={this.pushToNext}
+                                    error={errorMessage}
                                 />}
                     />
                     <Route
@@ -178,8 +179,8 @@ class Wrapper extends Component {
                                     {...routerProps}
                                     {...this.state}
                                     handleForm={this.handleForm}
-                                    pushToNext={this.pushToNext} 
-                                    error={errorMessage} 
+                                    pushToNext={this.pushToNext}
+                                    error={errorMessage}
                                 />}
                     />
                     <Route
@@ -191,8 +192,8 @@ class Wrapper extends Component {
                                     {...routerProps}
                                     {...this.state}
                                     handleForm={this.handleForm}
-                                    pushToNext={this.pushToNext} 
-                                    error={errorMessage} 
+                                    pushToNext={this.pushToNext}
+                                    error={errorMessage}
                                 />}
                     />
                     <Route
@@ -204,8 +205,8 @@ class Wrapper extends Component {
                                     {...routerProps}
                                     {...this.state}
                                     handleForm={this.handleForm}
-                                    pushToNext={this.pushToNext} 
-                                    error={errorMessage} 
+                                    pushToNext={this.pushToNext}
+                                    error={errorMessage}
                                 />}
                     />
                     <Route
@@ -228,6 +229,11 @@ class Wrapper extends Component {
                                     {...routerProps}
                                     {...this.state}
                                 />}
+                    />
+                    <Route 
+                        exact 
+                        path="/result" 
+                        component={Result} 
                     />
                 </Switch>
             </div>
