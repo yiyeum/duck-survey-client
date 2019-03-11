@@ -2,7 +2,11 @@ import React from 'react';
 import Stepper from './Stepper';
 import TextField from '@material-ui/core/TextField';
 
-const Place = ({ history, handleForm, place, pushToNext, error }) => {
+const Place = ({ history, handleForm, place, pushToNext, error, step, resetStep }) => {
+  if(step < 2) {
+    resetStep();
+    history.push('/');
+  }
   return (
     <div className="survey-wrapper">
       <Stepper step={2} />

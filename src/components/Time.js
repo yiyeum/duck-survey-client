@@ -4,7 +4,11 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { TimePicker } from "material-ui-pickers";
 import Stepper from './Stepper';
 
-const Time = ({ history, fedTime, handleDateChange, handleRepeatChange, repeat, pushToNext, error }) => {
+const Time = ({ history, fedTime, handleDateChange, handleRepeatChange, repeat, pushToNext, error, step, resetStep }) => {
+  if(step < 1) {
+    resetStep();
+    history.push('/');
+  }
   return (
     <div className="survey-wrapper">
       <Stepper step={1} />

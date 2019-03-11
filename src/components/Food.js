@@ -22,7 +22,11 @@ const foodtypes = [
   },
 ];
 
-const Food = ({ history, handleForm, food, foodType, foodAmount, pushToNext, error }) => {
+const Food = ({ history, handleForm, food, foodType, foodAmount, pushToNext, error, step, resetStep }) => {
+  if(step < 4) {
+    resetStep();
+    history.push('/');
+  }
   return (
     <div className="survey-wrapper">
       <Stepper step={4} />

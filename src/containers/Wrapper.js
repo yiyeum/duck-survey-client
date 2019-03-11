@@ -23,7 +23,8 @@ class Wrapper extends Component {
             foodType: '',
             foodAmount: '',
             fedTime: moment().format(),
-            repeat: false
+            repeat: false,
+            step: 1
         }
     }
 
@@ -61,7 +62,7 @@ class Wrapper extends Component {
         const { fedTime } = this.state;
         if (fedTime !== '') {
             this.props.clearError();
-            this.props.history.push('/place');
+            this.setState({ step: 2 }, () => this.props.history.push('/place'));
         } else {
             this.sendEmptyFieldError();
         }
@@ -75,7 +76,7 @@ class Wrapper extends Component {
         const { place } = this.state;
         if (place !== "") {
             this.props.clearError();
-            this.props.history.push('/duck');
+            this.setState({ step: 3 }, this.props.history.push('/duck'));
         } else {
             this.sendEmptyFieldError();
         }
@@ -89,10 +90,19 @@ class Wrapper extends Component {
         const { numberOfDucks } = this.state;
         if (numberOfDucks !== '' && numberOfDucks > 0) {
             this.props.clearError();
-            this.props.history.push('/food');
+            this.setState({ step: 4 }, this.props.history.push('/food'));
         } else {
             this.sendEmptyFieldError();
         }
+    }
+
+    /**
+     * Reset the step of the survey
+     * if the user try to access the page by url
+     * to skip the questionnaire
+     */
+    resetStep = () => {
+        this.setState({ step: 1 })
     }
 
     /**
@@ -168,6 +178,7 @@ class Wrapper extends Component {
                                     handleDateChange={this.handleDateChange}
                                     pushToNext={this.pushToNext}
                                     error={errorMessage}
+                                    resetStep={this.resetStep}
                                 />}
                     />
                     <Route
@@ -181,6 +192,7 @@ class Wrapper extends Component {
                                     handleForm={this.handleForm}
                                     pushToNext={this.pushToNext}
                                     error={errorMessage}
+                                    resetStep={this.resetStep}
                                 />}
                     />
                     <Route
@@ -194,6 +206,7 @@ class Wrapper extends Component {
                                     handleForm={this.handleForm}
                                     pushToNext={this.pushToNext}
                                     error={errorMessage}
+                                    resetStep={this.resetStep}
                                 />}
                     />
                     <Route
@@ -207,6 +220,7 @@ class Wrapper extends Component {
                                     handleForm={this.handleForm}
                                     pushToNext={this.pushToNext}
                                     error={errorMessage}
+                                    resetStep={this.resetStep}
                                 />}
                     />
                     <Route
@@ -230,10 +244,10 @@ class Wrapper extends Component {
                                     {...this.state}
                                 />}
                     />
-                    <Route 
-                        exact 
-                        path="/result" 
-                        component={Result} 
+                    <Route
+                        exact
+                        path="/result"
+                        component={Result}
                     />
                 </Switch>
             </div>
