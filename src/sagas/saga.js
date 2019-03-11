@@ -5,7 +5,7 @@ import axios from 'axios';
 import * as formAction from '../actions/formActions';
 import * as commonAction from '../actions/commonActions';
 import * as types from '../actions/actionTypes';
-const baseURL = 'http://duck-survey-api.herokuapp.com/api/';
+const baseURL = 'https://duck-survey-api.herokuapp.com/api/';
 
 function* submitForm({ fedTime, food, foodAmount, foodType, numberOfDucks, place, repeat }) {
     const model = {
