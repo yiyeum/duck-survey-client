@@ -1,11 +1,10 @@
 
 
-## Welcome!
+Duck Survey App built with React/Redux/Redux-Saga. <br />
 Please check this [link](https://duck-survey.herokuapp.com/) for the live app.
 
-## Run the project
+---
+`npm install` - Install Dependencies
 
-In the project directory, you can run:
-
-`npm start`
+`npm start` - Run Locally
 
