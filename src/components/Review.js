@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 const Review = ({ history, place, numberOfDucks, food, foodType, foodAmount, fedTime, repeat, submitForm, error, step, resetStep }) => {
-  const time = fedTime.split('T')[1].split('-')[0];
+  const time = fedTime.toString().split('T')[1].split('-')[0];
   if (step < 5) {
     resetStep();
     history.push('/');
